@@ -1,0 +1,70 @@
+{
+  "name": "django-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "postinstall": "yarn build"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "moment": "^2.29.1",
+    "register-service-worker": "^1.0.0",
+    "sass": "^1.32.7",
+    "sass-loader": "^10.1.1",
+    "vue": "^2.6.12",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.6.12",
+    "vuetify": "^2.4.4"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-plugin-pwa": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-cli-plugin-vuetify": "^2.1.0",
+    "vuetify-loader": "^1.7.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@vue/app",
+        {
+          "useBuiltIns": "entry"
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-console": "off"
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

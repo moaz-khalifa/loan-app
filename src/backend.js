@@ -17,8 +17,8 @@ $backend.interceptors.response.use(function (response) {
   return Promise.reject(error);
 })
 
-$backend.$fetchLoans = async () => {
-  const response = await $backend.get(`loans/`);
+$backend.$fetchLoans = async (axiosConfig) => {
+  const response = await $backend.get(`loans/`, axiosConfig);
   return response.data;
 }
 
@@ -29,7 +29,7 @@ $backend.$fetchPendingLoans = async (axiosConfig) => {
 
 $backend.$updateLoan = async (id, payload, axiosConfig) => {
   const response = await $backend.patch(`loans/${id}/`, payload, axiosConfig)
-  return response
+  return response;
 }
 
 $backend.$postLoan = async (payload, axiosConfig) => {
@@ -37,20 +37,6 @@ $backend.$postLoan = async (payload, axiosConfig) => {
   return response;
 }
 
-$backend.$deleteLoan = async (loanId) => {
-  const response = await $backend.delete(`loans/${loanId}`);
-  return response.data;
-}
 
-
-$backend.$login = async (payload) => {
-  const response = await $backend.post(`auth/`, payload);
-  return response.data;
-}
-
-$backend.$signup = async (payload) => {
-  const response = await $backend.post(`users/`, payload);
-  return response.data;
-}
 
 export default $backend

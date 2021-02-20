@@ -92,12 +92,13 @@ export default {
       let axiosConfig = {
         headers: {
           Authorization: "Token " + localStorage.getItem("user-token"),
-        },
+        }
       };
       let payload = { status: status };
       this.$backend.$updateLoan(id, payload, axiosConfig).then((response) => {
+        console.log(response)
         if (response.status == 200) {
-          this.text = `The loan has successfully ${status}`;
+          this.text = `The loan has been successfully ${status}`;
           this.snackbar = true;
         } else {
           this.text = `Something went wrong!`;

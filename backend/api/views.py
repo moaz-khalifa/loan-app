@@ -45,14 +45,24 @@ class LoanViewSet(viewsets.ModelViewSet):
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
     authentication_classes = (TokenAuthentication,)
-    # permission_classes = (AllowAny,)
     permission_classes_by_action = {'create': [IsAuthenticated],
-                                    'update': [IsAdminUser],
-                                    'list': [AllowAny],
+                                    'partial_update': [IsAdminUser],
+                                    'list': [IsAuthenticated],
                                     'list_pending': [IsAdminUser],
                                     }
 
-    # @action(detail=True, methods=['post'])
+    def list(self, request, *args, **kwargs):
+        user = self.request.user
+        loans = Loan.objects.filter(user=user.pk)
+        serializer = self.serializer_class(loans, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=['get'])
+    def list_pending(self, request, pk=None):
+        loans = Loan.objects.filter(status='pending')
+        serializer = self.serializer_class(loans, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def create(self, request, pk=None):
         amount = request.data['amount']
         term = request.data['term']
@@ -64,26 +74,8 @@ class LoanViewSet(viewsets.ModelViewSet):
                     'result': serializer.data}
         return Response(response, status=status.HTTP_200_OK)
 
-    # def update(self, request, pk=None):
-    #     loan = Loan.objects.get(id=pk)
-    #     status = request.data['status']
-    #     loan.status = status
-    #     loan.save()
-    #     serializer = self.serializer_class(loan)
-    #     response = {'message': 'Loan has been {status}',
-    #                 'result': serializer.data}
-    #     return Response(response, status=status.HTTP_200_OK)
-
     def get_permissions(self):
         try:
-            # return permission_classes depending on `action`
             return [permission() for permission in self.permission_classes_by_action[self.action]]
         except KeyError:
-            # action is not set return default permission_classes
-            return [permission() for permission in self.permission_classes]
-
-    @action(detail=False, methods=['get'])
-    def list_pending(self, request, pk=None):
-        loans = Loan.objects.filter(status='pending').order_by('-created')
-        serializer = self.serializer_class(loans, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)        
+            return [permission() for permission in self.permission_classes]    

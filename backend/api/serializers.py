@@ -24,4 +24,4 @@ class LoanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Loan
-        fields = '__all__' 
+        fields = '__all__'

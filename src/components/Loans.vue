@@ -6,7 +6,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <loan-handler />
+            <loan-handler @appendLoan="updateLoans"/>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -76,22 +76,17 @@ export default {
   },
   methods: {
     fetchLoans() {
-      this.$backend.$fetchLoans().then((responseData) => {
-        this.loans = responseData;
-      });
-    },
-    postLoan() {
       let axiosConfig = {
         headers: {
           Authorization: "Token " + localStorage.getItem("user-token"),
         },
       };
-      const payload = { amount: this.amount, term: this.term };
-      this.$backend.$postLoan(payload, axiosConfig).then(() => {
-        this.term = "";
-        this.amount = "";
-        this.fetchLoans();
+      this.$backend.$fetchLoans(axiosConfig).then((responseData) => {
+        this.loans = responseData;
       });
+    },
+    updateLoans(loan) {
+      this.loans.push(loan);
     },
     format_date(value) {
       if (value) {

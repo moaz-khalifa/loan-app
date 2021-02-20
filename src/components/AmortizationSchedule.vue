@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" width="400">
+  <v-dialog v-model="dialog" width="450">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         v-on:click="calc_payments"

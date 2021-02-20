@@ -79,6 +79,7 @@ export default {
         if (response.status == 200) {
           this.text = response.data.message;
           this.snackbar = true;
+          this.$emit('appendLoan', response.data.result)
         } else {
           this.text = `Something went wrong!`;
           this.snackbar = true;

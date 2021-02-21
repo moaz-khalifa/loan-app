@@ -42,14 +42,14 @@ and static files will be served from `localhost:8000`.
 
 ## How to use
 
-1- Run `localhost:8080` to register as a new user.
-2- After registeration, you can login to start using the app
-3- After login, you can request a new loan and check your loans history
-4- Before requesting a new loan, you can check its amortization schedule by clicking on details button
-5- To login as a bank admin, you first should register as any noraml user, then the django superuser should give you the Staff status permission from django admin portal. Once you granted this permission, you can login from the app to start approving or rejecting pending loans.
+- Run `localhost:8080` to register as a new user.
+- After registeration, you can login to start using the app
+- After login, you can request a new loan and check your loans history
+- Before requesting a new loan, you can check its amortization schedule by clicking on details button
+- To login as a bank admin, you first should register as any noraml user, then the django superuser should give you the Staff status permission from django admin portal. Once you granted this permission, you can login from the app to start approving or rejecting pending loans.
 
 ## Avaialble apps
 
-`localhost:8080` is the app's portal through which the user can use the app (Vue app styled with vuetify)
-`localhost:8000/api/` is the django rest framework portal
-`localhost:8000/api/admin` is the django admin portal
+- `localhost:8080` is the app's portal through which the user can use the app (Vue app styled with vuetify)
+- `localhost:8000/api/` is the django rest framework portal
+- `localhost:8000/api/admin` is the django admin portal

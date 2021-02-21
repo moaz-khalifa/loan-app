@@ -42,6 +42,11 @@ $backend.$register = async (payload) => {
   return response;
 }
 
+$backend.$login = async (payload) => {
+  const response = await $backend.post(`token-auth/`, payload);
+  return response;
+}
+
 
 
 export default $backend

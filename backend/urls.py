@@ -27,6 +27,6 @@ urlpatterns = [
     # http://localhost:8000/api/admin/
     path('api/admin/', admin.site.urls),
 
-    path('api-token-auth/', CustomAuthToken.as_view()),
-    # path('api-token-auth/', CustomAuthToken.as_view())
+    path('api/token-auth/', CustomAuthToken.as_view()),
+
 ]

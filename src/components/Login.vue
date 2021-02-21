@@ -20,8 +20,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import axios from "axios";
+// import axios from "axios";
 export default {
   name: "Login",
   components: {},
@@ -34,21 +33,19 @@ export default {
   },
   methods: {
     login() {
-      axios
-        .post("http://127.0.0.1:8000/api-token-auth/", {
+      let payload = {
           username: this.username,
           password: this.password,
-        })
-        .then((resp) => {
-          this.token = resp.data.token;
-          localStorage.setItem("user-token", resp.data.token);
-					localStorage.setItem("is-admin", resp.data.admin);
+      };
+      this.$backend.$login(payload).then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          this.token = res.data.token;
+          localStorage.setItem("user-token", res.data.token);
+					localStorage.setItem("is-admin", res.data.admin);
           this.$router.push("/");
-        })
-        .catch((err) => {
-          localStorage.removeItem("user-token");
-          console.log(err);
-        });
+        }
+      });
     },
   },
 };

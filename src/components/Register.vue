@@ -59,7 +59,6 @@ export default {
           email: this.email,
       };
       this.$backend.$register(payload).then((res) => {
-        console.log(res.status)
         if (res.status == 201) {
           this.text = 'User created successfully, please log in!';
           this.snackbar = true;

@@ -19,6 +19,7 @@ Before getting started you should have the following installed and running:
 ## Setup
 
 Setup
+
 ```
 $ yarn install
 $ pipenv install --dev & pipenv shell
@@ -53,3 +54,23 @@ and static files will be served from `localhost:8000`.
 - `localhost:8080` is the app's portal through which the user can use the app (Vue app styled with vuetify)
 - `localhost:8000/api/` is the django rest framework portal
 - `localhost:8000/api/admin` is the django admin portal
+
+## Deployment
+
+- <https://bank-loan-app.herokuapp.com/>
+- <https://bank-loan-app.herokuapp.com/api/>
+- <https://bank-loan-app.herokuapp.com/api/admin/>
+
+### Testing credentials
+
+1. User to apply for loans:
+(username: `test1`
+password: `123456`)
+
+2. Superuser to login to dgango admin:
+(username: `superuser`
+password: `123456789`)
+
+3. Bank admin user to approve pending loans:
+(username: `admin`
+password: `123456789`)

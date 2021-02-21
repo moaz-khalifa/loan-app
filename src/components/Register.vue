@@ -26,11 +26,19 @@
         </form>
       </v-flex>
     </v-layout>
+    <v-snackbar v-model="snackbar">
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "register",
   components: {},
@@ -39,19 +47,27 @@ export default {
       username: null,
       password: null,
       email: null,
+      snackbar: false,
+      text: "",
     };
   },
   methods: {
     CreateUser() {
-      axios
-        .post("http://127.0.0.1:8000/api/users/", {
+      let payload = { 
           username: this.username,
           password: this.password,
           email: this.email,
-        })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
-      this.$router.push("/");
+      };
+      this.$backend.$register(payload).then((res) => {
+        console.log(res.status)
+        if (res.status == 201) {
+          this.text = 'User created successfully, please log in!';
+          this.snackbar = true;
+          this.username = null,
+          this.password = null,
+          this.email = null
+        }
+      });
     },
   },
 };

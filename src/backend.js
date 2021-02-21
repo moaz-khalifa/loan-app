@@ -37,6 +37,11 @@ $backend.$postLoan = async (payload, axiosConfig) => {
   return response;
 }
 
+$backend.$register = async (payload) => {
+  const response = await $backend.post(`users/`, payload);
+  return response;
+}
+
 
 
 export default $backend
